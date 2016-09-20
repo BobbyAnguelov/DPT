@@ -1,0 +1,54 @@
+
+var iSet //set to be grown
+var neighbors to iSet //neighbors to the set (adjacent pixels)
+
+//main entry point for grow operation
+function grow( iSet, neighbors )
+{
+	create undoList
+		
+	growSet(iSet, neighbors, undoList)
+
+	set pixels in undo list to original values
+}
+
+//recursive grow operation for set
+function growSet( iSet, neighbors, undoList )
+{
+	foreach (neighbors to iSet)
+	{
+		if ( neighbor not in iSet)
+		{
+			if ( neighbour has the same luminosity as iSet)
+			{
+				add neighbor to set
+				get neighbor's neighbours
+				grow set with those neighbors
+			}
+			else
+			{
+				add neighbor to current set to stop recursion
+				add neighbors location and value to undo list
+			}	
+		}
+		else ( if neighbour is part of the same set )
+		{
+			do nothing
+		}
+		else (if neighbor in another set)
+		{
+			if ( neighbour has the same luminosity as iSet)
+			{
+				merge iSet and newSet				
+				growSet( iset, newSets neighbors, undoList)
+				remove newSet from set list												
+			}
+			else
+			{
+				add neighbor to current set to stop recursion
+				add neighbors location and value to undo list
+			}	
+		}
+	}
+}
+

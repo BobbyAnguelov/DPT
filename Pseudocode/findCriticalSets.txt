@@ -1,0 +1,16 @@
+foreach (pixel in image)
+{
+	if (pixel not in a set)
+	{
+		find pixel neighbors
+		get min and max luminosities of pixel neighbors
+		
+		if ( pixel Luminosity >= max Neighbour Luminosity or pixel Luminosity <= min Neighbour Luminosity)
+		{
+			create set from pixel
+			grow( set, pixel neighbors )
+			add set to sets list
+			add set to critical sets list				
+		}
+	}
+}

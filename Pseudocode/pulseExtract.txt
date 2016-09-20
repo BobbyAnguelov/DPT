@@ -1,0 +1,53 @@
+foreach (active set)
+{
+	if ( number of pixels in set <= n )
+	{
+		get neighbors of set
+		get min and max luminosities of set neighbors
+		
+		//local minimum
+		if (set luminosity < min )
+		{
+			relative luminosity = set luminosity - min
+			cummulative luminosity = set luminosity
+			
+			extract down pulse (set of pixels, cummulative luminosity and relative luminosity)
+			add pulse to list of down pulses of that size 
+			
+			foreach ( pixel in set )
+			{
+				set luminosity to min
+			}
+						
+			grow set 
+			
+			add to new active set list
+		}
+		
+		//local maximum
+		else if ( set luminosity > max )
+		{
+			relative luminosity = set luminosity - max
+			cummulative luminosity = set luminosity
+			
+			extract up pulse (set of pixels, cummulative luminosity and relative luminosity)
+			add pulse to list of up pulses of that size 
+			
+			foreach ( pixel in set )
+			{
+				set luminosity to max
+			}
+						
+			grow set 
+			
+			add to new active set list
+		}
+	}
+	else
+	{
+		add set ID to new active set list for future extraction
+	}
+}
+
+delete active set list
+active set list = new active set list
